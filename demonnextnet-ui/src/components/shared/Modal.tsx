@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import styles from "./Modal.module.scss";
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import styles from './Modal.module.scss';
 
 type ModalProps = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ export default function Modal({
   onClose,
   children,
   title,
-  ariaLabel = "Modal",
+  ariaLabel = 'Modal',
 }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -41,8 +41,10 @@ export default function Modal({
   }, [isOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   return (

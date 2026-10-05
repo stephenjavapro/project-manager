@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { createContext, useEffect, useState } from "react";
-import { UserSettings } from "@/types";
-import { getUserSettings, updateUserSettings } from "@/lib/api";
-import { SettingsContextType } from "./types";
+import { createContext, useEffect, useState } from 'react';
+import { UserSettings } from '@/types';
+import { getUserSettings, updateUserSettings } from '@/lib/api';
+import { SettingsContextType } from './types';
 
 export const SettingsContext = createContext<SettingsContextType | null>(null);
 
@@ -17,7 +17,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setIsLoading(false));
   }, []);
 
-  async function updateSettings(data: Omit<UserSettings, "id">) {
+  async function updateSettings(data: Omit<UserSettings, 'id'>) {
     const updated = await updateUserSettings(data);
     setSettings(updated);
   }

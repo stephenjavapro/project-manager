@@ -9,9 +9,9 @@ interface PriorityConfig {
 }
 
 const PRIORITY_CONFIG: Record<Priority, PriorityConfig> = {
-  low:    { Icon: SignalLow,    label: 'Low priority'    },
+  low: { Icon: SignalLow, label: 'Low priority' },
   medium: { Icon: SignalMedium, label: 'Medium priority' },
-  high:   { Icon: SignalHigh,   label: 'High priority'   },
+  high: { Icon: SignalHigh, label: 'High priority' },
 };
 
 interface PriorityLevelProps {
@@ -32,12 +32,7 @@ export function PriorityLevel({ priority }: PriorityLevelProps) {
       title={label}
       className={`${styles.badge} ${styles[priority]}`}
     >
-      <Icon
-        size={18}
-        color="#ffffff"
-        strokeWidth={2.5}
-        aria-hidden="true"
-      />
+      <Icon size={18} color="#ffffff" strokeWidth={2.5} aria-hidden="true" />
     </div>
   );
 }

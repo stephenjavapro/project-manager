@@ -1,10 +1,10 @@
-import { useState, useId, useRef } from "react";
-import TextInput from "@/components/shared/TextInput/TextInput";
-import TextArea from "@/components/shared/TextArea/TextArea";
-import Button from "@/components/shared/Button/Button";
-import PrioritySelector from "../PrioritySelector/PrioritySelector";
-import { Priority } from "@/types";
-import styles from "./CreateProjectForm.module.scss";
+import { useState, useId, useRef } from 'react';
+import TextInput from '@/components/shared/TextInput/TextInput';
+import TextArea from '@/components/shared/TextArea/TextArea';
+import Button from '@/components/shared/Button/Button';
+import PrioritySelector from '../PrioritySelector/PrioritySelector';
+import { Priority } from '@/types';
+import styles from './CreateProjectForm.module.scss';
 
 interface Task {
   id: string;
@@ -17,7 +17,7 @@ export interface ProjectFormData {
   priority: Priority;
   dueDate: string | undefined;
   description: string;
-  tasks: Omit<Task, "id">[];
+  tasks: Omit<Task, 'id'>[];
 }
 
 interface CreateProjectFormProps {
@@ -33,30 +33,41 @@ export default function CreateProjectForm({
 }: CreateProjectFormProps) {
   const dueDateId = useId();
 
+  const projectNameRef = useRef<HTMLInputElement>(null);
   const taskTitleRef = useRef<HTMLInputElement>(null);
 
-  const [projectName, setProjectName] = useState("");
+  const [projectName, setProjectName] = useState('');
+  const [projectNameValidationAttempted, setProjectNameValidationAttempted] =
+    useState(false);
   const [priority, setPriority] = useState<Priority>(Priority.Low);
-  const [dueDate, setDueDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [taskTitle, setTaskTitle] = useState("");
-  const [taskNotes, setTaskNotes] = useState("");
+  const [dueDate, setDueDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskTitleValidationAttempted, setTaskTitleValidationAttempted] =
+    useState(false);
+  const [taskNotes, setTaskNotes] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const handleAddTask = () => {
-  if (!taskTitle.trim()) return;
-  setTasks((prev) => [
-    ...prev,
-    {
-      id: crypto.randomUUID(),
-      title: taskTitle.trim(),
-      notes: taskNotes.trim(),
-    },
-  ]);
-  setTaskTitle("");
-  setTaskNotes("");
-  taskTitleRef.current?.focus();
-};
+    const title = taskTitle.trim();
+    if (!title) {
+      setTaskTitleValidationAttempted(true);
+      taskTitleRef.current?.focus();
+      return;
+    }
+    setTasks((prev) => [
+      ...prev,
+      {
+        id: crypto.randomUUID(),
+        title,
+        notes: taskNotes.trim(),
+      },
+    ]);
+    setTaskTitle('');
+    setTaskTitleValidationAttempted(false);
+    setTaskNotes('');
+    taskTitleRef.current?.focus();
+  };
 
   const handleRemoveTask = (id: string) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
@@ -64,6 +75,11 @@ export default function CreateProjectForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!projectName.trim()) {
+      setProjectNameValidationAttempted(true);
+      projectNameRef.current?.focus();
+      return;
+    }
     onSubmit?.({
       name: projectName,
       priority,
@@ -79,6 +95,7 @@ export default function CreateProjectForm({
       {/* Row 1: Project Name */}
       <TextInput
         className={styles.nameInput}
+        ref={projectNameRef}
         label="Name"
         value={projectName}
         maxLength={100}
@@ -86,14 +103,12 @@ export default function CreateProjectForm({
         onChange={setProjectName}
         autoFocus
         required
+        validationAttempted={projectNameValidationAttempted}
       />
 
       {/* Row 2: Priority + Due Date */}
       <div className={`${styles.row} ${styles.twoColumn}`}>
-        <PrioritySelector
-          value={priority}
-          onChange={setPriority}
-        />
+        <PrioritySelector value={priority} onChange={setPriority} />
         <div className={styles.dateWrapper}>
           <label htmlFor={dueDateId} className={styles.dateLabel}>
             Due Date
@@ -119,7 +134,10 @@ export default function CreateProjectForm({
       />
 
       {/* Assign Tasks */}
-      <section className={styles.section} aria-labelledby="assign-tasks-heading">
+      <section
+        className={styles.section}
+        aria-labelledby="assign-tasks-heading"
+      >
         <h3 id="assign-tasks-heading" className={styles.sectionHeading}>
           Assign Tasks
         </h3>
@@ -130,6 +148,9 @@ export default function CreateProjectForm({
             ref={taskTitleRef}
             label="Task Title"
             value={taskTitle}
+            required
+            validationAttempted={taskTitleValidationAttempted}
+            validateOnBlur={false}
             onChange={setTaskTitle}
           />
           <TextArea
@@ -139,12 +160,12 @@ export default function CreateProjectForm({
             onChange={setTaskNotes}
             rows={3}
           />
-            <Button
-                className={styles.addTaskButton}
-                label="Add Task"
-                variant="secondary"
-                onClick={handleAddTask}
-            />
+          <Button
+            className={styles.addTaskButton}
+            label="Add Task"
+            variant="secondary"
+            onClick={handleAddTask}
+          />
         </div>
 
         {tasks.length > 0 && (
@@ -173,16 +194,8 @@ export default function CreateProjectForm({
 
       {/* Form Actions */}
       <div className={styles.actions}>
-        <Button
-          label="Create Project"
-          variant="primary"
-          htmlType="submit"
-        />
-        <Button
-          label="Cancel"
-          variant="secondary"
-          onClick={onCancel}
-        />
+        <Button label="Create Project" variant="primary" htmlType="submit" />
+        <Button label="Cancel" variant="secondary" onClick={onCancel} />
       </div>
     </form>
   );

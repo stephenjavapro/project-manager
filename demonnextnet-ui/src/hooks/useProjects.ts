@@ -1,12 +1,12 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from 'react';
 import {
   getProjects,
   createProject as createProjectApi,
   deleteProject as deleteProjectApi,
   toggleProjectStatus as toggleProjectStatusApi,
-} from "@/lib/api";
-import type { ProjectItem, TaskItem } from "@/types";
-import { ProjectFormData } from "@/components/CreateProjectForm/CreateProjectForm";
+} from '@/lib/api';
+import type { ProjectItem, TaskItem } from '@/types';
+import { ProjectFormData } from '@/components/CreateProjectForm/CreateProjectForm';
 
 export function useProjects() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
@@ -22,29 +22,39 @@ export function useProjects() {
       setProjects(data);
       setHasLoadedProjects(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to fetch projects");
+      setError(err instanceof Error ? err.message : 'Failed to fetch projects');
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  const createProject = useCallback(async (data: ProjectFormData) => {
-    try {
-      await createProjectApi(data);
-      await fetchProjects();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create project");
-    }
-  }, [fetchProjects]);
+  const createProject = useCallback(
+    async (data: ProjectFormData) => {
+      try {
+        await createProjectApi(data);
+        await fetchProjects();
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : 'Failed to create project'
+        );
+      }
+    },
+    [fetchProjects]
+  );
 
-  const deleteProject = useCallback(async (id: number) => {
-    try {
-      await deleteProjectApi(id);
-      await fetchProjects();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : `Failed to delete project ${id}`);
-    }
-  }, [fetchProjects]);
+  const deleteProject = useCallback(
+    async (id: number) => {
+      try {
+        await deleteProjectApi(id);
+        await fetchProjects();
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : `Failed to delete project ${id}`
+        );
+      }
+    },
+    [fetchProjects]
+  );
 
   const updateTaskInProjects = useCallback((updatedTask: TaskItem) => {
     setProjects((currentProjects) =>
@@ -63,14 +73,21 @@ export function useProjects() {
     );
   }, []);
 
-  const toggleProjectStatus = useCallback(async (id: number) => {
-    try {
-      const updatedProject = await toggleProjectStatusApi(id);
-      updateProjectInProjects(updatedProject);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : `Failed to toggle status for project ${id}`);
-    }
-  }, [updateProjectInProjects]);
+  const toggleProjectStatus = useCallback(
+    async (id: number) => {
+      try {
+        const updatedProject = await toggleProjectStatusApi(id);
+        updateProjectInProjects(updatedProject);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : `Failed to toggle status for project ${id}`
+        );
+      }
+    },
+    [updateProjectInProjects]
+  );
 
   useEffect(() => {
     fetchProjects();

@@ -1,46 +1,46 @@
 .card {
-  --card-bg:          #ffffff;
-  --card-border:      #e5e7eb;  // gray-200
-  --card-shadow:      0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --text-primary:     #111827;  // gray-900
-  --text-secondary:   #6b7280;  // gray-500  — 4.60:1 on #fff ✓ AA
-  --divider:          #e5e7eb;  // gray-200
-  --surface-hover:    #f3f4f6;  // gray-100
-  --menu-bg:          #ffffff;
-  --menu-shadow:      0 4px 12px rgba(0, 0, 0, 0.12);
-  --focus-ring:       #1d4ed8;  // blue-700  — 5.90:1 on #fff ✓ AA
-  
-  --warning-bg:       #fff7ed;  // orange-50
-  --warning-text:     #7c2d12;  // orange-900 — 8.83:1 on #fff7ed ✓ AAA
-  --warning-border:   #c2410c;  // orange-700 — 4.88:1 on #fff7ed ✓ AA non-text
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --divider: #e5e7eb;
+  --surface-hover: #f3f4f6;
+  --menu-bg: #ffffff;
+  --menu-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --focus-ring: #1d4ed8;
 
-  --success-bg:       #f0fdf4;  // green-50
-  --success-text:     #14532d;  // green-900 — 8.70:1 on #f0fdf4 ✓ AAA
-  --success-border:   #16a34a;  // green-600 — 3.15:1 on #f0fdf4 ✓ AA non-text
+  --warning-bg: #fff7ed;
+  --warning-text: #7c2d12;
+  --warning-border: #c2410c;
+
+  --success-bg: #f0fdf4;
+  --success-text: #14532d;
+  --success-border: #16a34a;
   
-  --danger-text:      #b91c1c;  // red-700    — 5.90:1 on #fff ✓ AA
+  --danger-text: #b91c1c;
 
   @media (prefers-color-scheme: dark) {
-    --card-bg:          #1f2937;  // gray-800
-    --card-border:      #374151;  // gray-700
-    --card-shadow:      0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.25);
-    --text-primary:     #f9fafb;  // gray-50
-    --text-secondary:   #9ca3af;  // gray-400  — 4.63:1 on #1f2937 ✓ AA
-    --divider:          #374151;  // gray-700
-    --surface-hover:    #374151;  // gray-700
-    --menu-bg:          #111827;  // gray-900
-    --menu-shadow:      0 4px 16px rgba(0, 0, 0, 0.5);
-    --focus-ring:       #60a5fa;  // blue-400  — 4.56:1 on #1f2937 ✓ AA
-    
-    --warning-bg:       #431407;  // deep orange-950
-    --warning-text:     #fed7aa;  // orange-200 — 10.8:1 on #431407 ✓ AAA
-    --warning-border:   #9a3412;  // orange-800 —  3.2:1 on #431407 ✓ AA non-text
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --divider: #374151;
+    --surface-hover: #374151;
+    --menu-bg: #111827;
+    --menu-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --focus-ring: #60a5fa;
 
-    --success-bg:       #052e16;  // green-950
-    --success-text:     #bbf7d0;  // green-200 — 12.30:1 on #052e16 ✓ AAA
-    --success-border:   #22c55e;  // green-500 — 6.54:1 on #052e16 ✓ AA non-text
+    --warning-bg: #431407;
+    --warning-text: #fed7aa;
+    --warning-border: #9a3412;
+
+    --success-bg: #052e16;
+    --success-text: #bbf7d0;
+    --success-border: #22c55e;
     
-    --danger-text:      #fca5a5;  // red-300    —  5.5:1 on #111827 ✓ AA
+    --danger-text: #fca5a5;
   }
 
   position: relative;
@@ -230,6 +230,7 @@
 .panel {
   display: grid;
   grid-template-rows: 0fr;
+  contain: paint; // overflow issue
   transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -1,4 +1,12 @@
-$color-primary: #0d1bb0;
+$color-background-light: #ffffff;
+$color-background-dark: #000000;
+$color-background-sunken-dark: #272a32;
+$color-background-sunken-light: #e5e7eb;
+
+$color-background-modal-light: #f6f6f6;
+$color-background-modal-dark: #101010;
+
+$color-primary-light: #0d1bb0;
 $color-primary-dark: #3730a3;
 
 $color-secondary-light: #0e7490;
@@ -13,10 +21,66 @@ $color-warning-dark: #fbbf24;
 $color-danger-light: #980d0d;
 $color-danger-dark: #f87171;
 
-$color-text: #111827;
-$color-background: #f9fafb;
-$color-border: #d1d5db;
-$color-background-sunken: #f3f4f6;
+$color-danger-interaction-light: #980d0d;
+$color-danger-interaction-dark: #f87171;
+$color-danger-interaction-focus-hover-light: #700000;
+$color-danger-interaction-focus-hover-dark: #ff9b9b;
 
-$text-primary: #000000;
-$text-secondary: #666666;
+$color-text-primary-light: #0f0f0f;
+$color-text-primary-dark: #f0f0f0;
+
+$color-text-secondary-light: #3b4553;
+$color-text-secondary-dark: #acb3bf;
+
+$color-heading-light: #111827;
+$color-heading-dark: #f9fafb;
+
+$color-border-light: #d1d5db;
+$color-border-dark: #e5e7eb;
+
+$color-border-input-light: #6b7280;
+$color-border-input-hover-light: #4a5159;
+$color-border-input-focus-light: #203038;
+
+$color-border-input-dark: #d9dbe1;
+$color-border-input-hover-dark: #dff2e7;
+$color-border-input-focus-dark: #e6f9f9;
+
+$color-background-input-hover-light: #f0f0f0;
+$color-background-input-hover-dark: #171717;
+
+$color-button-focus-ring-light: #005fcc;
+$color-button-focus-ring-dark: #1976D2;
+
+$color-button-primary-background-light: #0f172a;
+$color-button-primary-foreground-light: #ffffff;
+$color-button-primary-border-light: #0f172a;
+$color-button-primary-hover-light: #1e293b;
+$color-button-primary-active-light: #020617;
+$color-button-primary-background-dark: #a5b4fc;
+$color-button-primary-foreground-dark: #0f172a;
+$color-button-primary-border-dark: #a5b4fc;
+$color-button-primary-hover-dark: #c7d2fe;
+$color-button-primary-active-dark: #818cf8;
+
+$color-button-secondary-background-light: transparent;
+$color-button-secondary-foreground-light: #0f172a;
+$color-button-secondary-border-light: #0f172a;
+$color-button-secondary-hover-light: #f1f5f9;
+$color-button-secondary-active-light: #e2e8f0;
+$color-button-secondary-background-dark: #111827;
+$color-button-secondary-foreground-dark: #e2e8f0;
+$color-button-secondary-border-dark: #94a3b8;
+$color-button-secondary-hover-dark: #1e293b;
+$color-button-secondary-active-dark: #334155;
+
+$color-button-tertiary-background-light: #e0f2fe;
+$color-button-tertiary-foreground-light: #075985;
+$color-button-tertiary-border-light: #0284c7;
+$color-button-tertiary-hover-light: #bae6fd;
+$color-button-tertiary-active-light: #7dd3fc;
+$color-button-tertiary-background-dark: #082f49;
+$color-button-tertiary-foreground-dark: #bae6fd;
+$color-button-tertiary-border-dark: #38bdf8;
+$color-button-tertiary-hover-dark: #0c4a6e;
+$color-button-tertiary-active-dark: #075985;

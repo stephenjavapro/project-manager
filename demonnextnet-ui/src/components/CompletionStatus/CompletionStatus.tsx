@@ -1,22 +1,30 @@
-import { useState, useId, useRef, useEffect, type KeyboardEvent } from "react";
-import { Check } from "lucide-react";
-import styles from "./CompletionStatus.module.scss";
+import { useState, useId, useRef, useEffect, type KeyboardEvent } from 'react';
+import { Check } from 'lucide-react';
+import styles from './CompletionStatus.module.scss';
 
 interface CompletionStatusProps {
   completed: boolean;
   onChange: (completed: boolean) => void;
 }
 
-export function CompletionStatus({ completed, onChange }: CompletionStatusProps) {
+export function CompletionStatus({
+  completed,
+  onChange,
+}: CompletionStatusProps) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
-  const [liveMsg, setLiveMsg] = useState("");
+  const [liveMsg, setLiveMsg] = useState('');
   const tooltipId = useId();
   const isMounted = useRef(false);
 
   useEffect(() => {
-    if (!isMounted.current) { isMounted.current = true; return; }
-    setLiveMsg(completed ? "Task marked as Completed" : "Task marked as Pending");
-    const t = setTimeout(() => setLiveMsg(""), 1500);
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    setLiveMsg(
+      completed ? 'Task marked as Completed' : 'Task marked as Pending'
+    );
+    const t = setTimeout(() => setLiveMsg(''), 1500);
     return () => clearTimeout(t);
   }, [completed]);
 
@@ -25,7 +33,7 @@ export function CompletionStatus({ completed, onChange }: CompletionStatusProps)
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === " " || e.key === "Enter") {
+    if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       toggle();
     }
@@ -33,7 +41,7 @@ export function CompletionStatus({ completed, onChange }: CompletionStatusProps)
 
   const tooltipClass = [styles.tooltip, tooltipVisible && styles.visible]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <div className={styles.wrapper}>
@@ -48,7 +56,9 @@ export function CompletionStatus({ completed, onChange }: CompletionStatusProps)
 
       <div className={styles.trackWrapper}>
         <div id={tooltipId} role="tooltip" className={tooltipClass}>
-          {completed ? "Completed — click to reopen" : "Pending — click to complete"}
+          {completed
+            ? 'Completed — click to reopen'
+            : 'Pending — click to complete'}
           <span aria-hidden="true" className={styles.tooltipArrow} />
         </div>
 

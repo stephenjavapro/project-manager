@@ -1,21 +1,21 @@
-import React, { forwardRef } from "react";
-import styles from "./Button.module.scss";
+import React, { forwardRef } from 'react';
+import styles from './Button.module.scss';
 
-type ButtonVariant     = "primary" | "secondary" | "tertiary";
-type ButtonHtmlType    = "button" | "submit" | "reset";
-type ButtonIconPlacement = "left" | "right";
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+type ButtonHtmlType = 'button' | 'submit' | 'reset';
+type ButtonIconPlacement = 'left' | 'right';
 
 interface ButtonProps {
   className?: string;
-  label:          string;
-  variant:        ButtonVariant;
-  icon?:          React.ReactNode;
+  label: string;
+  variant: ButtonVariant;
+  icon?: React.ReactNode;
   iconPlacement?: ButtonIconPlacement;
-  onClick?:       () => void;
-  disabled?:      boolean;
-  htmlType?:      ButtonHtmlType;
-  ariaExpanded?:  boolean;
-  ariaControls?:  string;
+  onClick?: () => void;
+  disabled?: boolean;
+  htmlType?: ButtonHtmlType;
+  ariaExpanded?: boolean;
+  ariaControls?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -24,10 +24,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     label,
     variant,
     icon,
-    iconPlacement = "left",
+    iconPlacement = 'left',
     onClick,
-    disabled   = false,
-    htmlType   = "button",
+    disabled = false,
+    htmlType = 'button',
     ariaExpanded,
     ariaControls,
   },
@@ -48,14 +48,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       aria-disabled={disabled}
       aria-expanded={ariaExpanded}
       aria-controls={ariaControls}
-      className={`${styles.button} ${styles[variant]} ${className ?? ""}`.trim()}
+      className={`${styles.button} ${styles[variant]} ${className ?? ''}`.trim()}
     >
-      {iconPlacement === "left"  && iconNode}
+      {iconPlacement === 'left' && iconNode}
       <span>{label}</span>
-      {iconPlacement === "right" && iconNode}
+      {iconPlacement === 'right' && iconNode}
     </button>
   );
 });
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 export default Button;

@@ -1,6 +1,6 @@
-import CompletionStatus from "@/components/CompletionStatus/CompletionStatus";
-import { TaskItem as TaskItemType } from "@/types";
-import styles from "./TaskItem.module.scss";
+import CompletionStatus from '@/components/CompletionStatus/CompletionStatus';
+import { TaskItem as TaskItemType } from '@/types';
+import styles from './TaskItem.module.scss';
 
 interface TaskItemProps {
   task: TaskItemType;

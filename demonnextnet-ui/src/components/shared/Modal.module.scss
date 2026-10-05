@@ -1,7 +1,4 @@
 .modal {
-  --modal-background: #ffffff;
-  --modal-foreground: #171717;
-
   position: fixed;
   inset: 0;
   margin: auto;
@@ -10,9 +7,8 @@
   max-height: min(90vh, 1000px);
   padding: 0;
   overflow: hidden;
-  color: var(--modal-foreground);
   color-scheme: light dark;
-  background-color: var(--modal-background);
+  background-color: var(--color-background-modal);
   border: 0;
   border-radius: 12px;
   box-shadow: 0 16px 48px rgb(0 0 0 / 24%);
@@ -34,7 +30,7 @@
   min-height: 0;
   overflow: hidden;
   padding: 24px;
-  background-color: var(--modal-background);
+  background-color: var(--color-background-modal);
 }
 
 .header {
@@ -91,9 +87,6 @@
 
 @media (prefers-color-scheme: dark) {
   .modal {
-    --modal-background: #0a0a0a;
-    --modal-foreground: #ededed;
-
     border: 1px solid #525252;
     box-shadow:
       0 0 0 1px rgb(255 255 255 / 8%),

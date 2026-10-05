@@ -1,5 +1,5 @@
-import { useState, useId } from "react";
-import styles from "./DatePicker.module.scss";
+import { useState, useId } from 'react';
+import styles from './DatePicker.module.scss';
 
 interface DatePickerProps {
   label: string;
@@ -30,18 +30,18 @@ export default function DatePicker({
   const [touched, setTouched] = useState(false);
 
   const formatDisplayDate = (isoDate: string): string => {
-    const [year, month, day] = isoDate.split("-");
+    const [year, month, day] = isoDate.split('-');
     return `${month}/${day}/${year}`;
   };
 
   const validate = (val: string): string | null => {
     if (required && !val) {
-      return "This field is required.";
+      return 'This field is required.';
     }
     if (val) {
       const date = new Date(`${val}T00:00:00`);
       if (isNaN(date.getTime())) {
-        return "Please enter a valid date.";
+        return 'Please enter a valid date.';
       }
       if (min) {
         const minDate = new Date(`${min}T00:00:00`);
@@ -80,7 +80,8 @@ export default function DatePicker({
         {label}
         {required && (
           <span className={styles.required} aria-hidden="true">
-            {" "}*
+            {' '}
+            *
           </span>
         )}
       </label>
@@ -98,9 +99,9 @@ export default function DatePicker({
         max={max}
         required={required}
         aria-required={required}
-        aria-invalid={hasError ? "true" : "false"}
+        aria-invalid={hasError ? 'true' : 'false'}
         aria-describedby={errorId}
-        className={`${styles.input} ${hasError ? styles.inputError : ""}`}
+        className={`${styles.input} ${hasError ? styles.inputError : ''}`}
       />
       <span
         id={errorId}
@@ -108,7 +109,7 @@ export default function DatePicker({
         aria-live="polite"
         className={styles.error}
       >
-        {hasError ? error : ""}
+        {hasError ? error : ''}
       </span>
     </div>
   );

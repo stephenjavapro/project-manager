@@ -1,7 +1,7 @@
-import { useState, useId } from "react";
-import type { CharacterLimitProps } from "../../../types";
-import CharacterLimitWarning from "../CharacterLimitWarning/CharacterLimitWarning";
-import styles from "./TextArea.module.scss";
+import { useState, useId } from 'react';
+import type { CharacterLimitProps } from '../../../types';
+import CharacterLimitWarning from '../CharacterLimitWarning/CharacterLimitWarning';
+import styles from './TextArea.module.scss';
 
 type TextAreaProps = {
   className?: string;
@@ -42,7 +42,7 @@ export default function TextArea({
   const hasError = touched && !!error;
 
   const validate = (val: string): string | null => {
-    if (required && !val.trim()) return "This field is required.";
+    if (required && !val.trim()) return 'This field is required.';
     return null;
   };
 
@@ -57,19 +57,20 @@ export default function TextArea({
     setError(validate(value));
   };
 
-  const describedBy = [
-    showWarning ? warningId : null,
-    hasError ? errorId : null,
-  ]
-    .filter(Boolean)
-    .join(" ") || undefined;
+  const describedBy =
+    [showWarning ? warningId : null, hasError ? errorId : null]
+      .filter(Boolean)
+      .join(' ') || undefined;
 
   return (
-    <div className={`${styles.wrapper} ${className ?? ""}`.trim()}>
+    <div className={`${styles.wrapper} ${className ?? ''}`.trim()}>
       <label htmlFor={id} className={styles.label}>
         {label}
         {required && (
-          <span className={styles.required} aria-hidden="true"> *</span>
+          <span className={styles.required} aria-hidden="true">
+            {' '}
+            *
+          </span>
         )}
       </label>
       <textarea
@@ -83,20 +84,20 @@ export default function TextArea({
         rows={rows}
         required={required}
         aria-required={required}
-        aria-invalid={hasError ? "true" : "false"}
+        aria-invalid={hasError ? 'true' : 'false'}
         aria-describedby={describedBy}
-        className={`${styles.textarea} ${hasError ? styles.textareaError : ""}`}
+        className={`${styles.textarea} ${hasError ? styles.textareaError : ''}`}
       />
       <div className={styles.footer}>
         {hasValidation && (
-            <span
+          <span
             id={errorId}
             role="alert"
             aria-live="polite"
             className={styles.error}
-            >
-            {hasError ? error : ""}
-            </span>
+          >
+            {hasError ? error : ''}
+          </span>
         )}
         {showWarning && (
           <CharacterLimitWarning

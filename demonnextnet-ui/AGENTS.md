@@ -11,15 +11,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # Project: DemoNextNet UI
 
 ## Overview
+
 This is the frontend for a full-stack demo project. It consumes a .NET 8 Web API (`DemoNextNet.Api`) running locally at `http://localhost:5106`.
 
 ## Tech Stack
+
 - Next.js (App Router)
 - TypeScript
 - SCSS Modules for styling (no Tailwind, no CSS-in-JS)
 - React Compiler enabled
 
 ## Conventions
+
 - All styles are written in `.module.scss` files scoped to their component
 - No global utility classes — layout and styling logic lives in the component's module
 - Components live in `src/components/` and are organized by feature
@@ -27,11 +30,13 @@ This is the frontend for a full-stack demo project. It consumes a .NET 8 Web API
 - Types and interfaces live in `src/types/`
 
 ## API
+
 - Base URL: `http://localhost:5106`
 - Endpoints follow REST conventions for `ProjectItems` and `TaskItems`
 - A `ProjectItem` contains a list of `TaskItem` children
 
 ## Notes
+
 - Do not suggest Tailwind classes
 - Do not suggest CSS-in-JS solutions
 - Prefer async/await over `.then()` chains

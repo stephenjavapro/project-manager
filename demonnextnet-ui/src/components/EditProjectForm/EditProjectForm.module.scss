@@ -10,7 +10,7 @@
 .heading {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -48,23 +48,23 @@
 .dateLabel {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .dateInput {
   height: 44px;
-  border: 2px solid #94a3b8;
+  border: 2px solid var(--color-border-input);
   border-radius: 0.375rem;
   padding: 0 0.75rem;
   font-size: 1rem;
   font-family: inherit;
-  color: #0f172a;
-  background-color: #ffffff;
+  color: var(--color-text-primary);
+  background-color: transparent;
 
   &:focus-visible {
-    outline: 3px solid #005fcc;
+    outline: 3px solid var(--color-button-focus-ring);
     outline-offset: 3px;
-    border-color: #005fcc;
+    border-color: var(--color-button-focus-ring);
   }
 }
 
@@ -77,12 +77,12 @@
   flex-direction: column;
   gap: 1rem;
   padding-top: 1rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--color-border);
 }
 
 .sectionHeading {
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -117,11 +117,16 @@
   background-color: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #090b00;
+  }
 }
 
 .newTask {
-  border-left: 3px solid #005fcc;
+  border-left: 3px solid var(--color-secondary);
   background-color: #f0f6ff;
+  color: #0a0a0a;
 }
 
 .taskDetails {
@@ -135,12 +140,12 @@
 .taskName {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-text-primary);
 }
 
 .taskNotes {
+  color: #1f1f1f;
   font-size: 0.875rem;
-  color: #64748b;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -155,16 +160,17 @@
   border-radius: 0.25rem;
   font-size: 0.875rem;
   line-height: 1;
-  color: #94a3b8;
+  color: #990000;
   cursor: pointer;
 
   &:hover {
-    color: #dc2626;
+    color: #550000;
     background-color: #fef2f2;
   }
 
   &:focus-visible {
-    outline: 3px solid #005fcc;
+    color: #550000;
+    outline: 3px solid var(--color-button-focus-ring);
     outline-offset: 2px;
   }
 }
@@ -176,7 +182,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   padding-top: 1rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--color-border);
 }
 
 @media (max-width: 48rem) {

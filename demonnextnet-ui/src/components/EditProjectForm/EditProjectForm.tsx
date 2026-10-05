@@ -1,10 +1,10 @@
-import { useState, useId, useRef } from "react";
-import TextInput from "@/components/shared/TextInput/TextInput";
-import TextArea from "@/components/shared/TextArea/TextArea";
-import Button from "@/components/shared/Button/Button";
-import PrioritySelector from "../PrioritySelector/PrioritySelector";
-import { Priority, ProjectItem, TaskItem } from "@/types";
-import styles from "./EditProjectForm.module.scss";
+import { useState, useId, useRef } from 'react';
+import TextInput from '@/components/shared/TextInput/TextInput';
+import TextArea from '@/components/shared/TextArea/TextArea';
+import Button from '@/components/shared/Button/Button';
+import PrioritySelector from '../PrioritySelector/PrioritySelector';
+import { Priority, ProjectItem, TaskItem } from '@/types';
+import styles from './EditProjectForm.module.scss';
 
 interface NewTask {
   id: string;
@@ -17,7 +17,7 @@ export interface EditProjectFormData {
   priority: Priority;
   dueDate: string | undefined;
   description: string;
-  tasksToAdd: Omit<TaskItem, "id">[];
+  tasksToAdd: Omit<TaskItem, 'id'>[];
   tasksToDelete: number[];
 }
 
@@ -35,32 +35,44 @@ export default function EditProjectForm({
   onCancel,
 }: EditProjectFormProps) {
   const dueDateId = useId();
+  const projectNameRef = useRef<HTMLInputElement>(null);
   const taskTitleRef = useRef<HTMLInputElement>(null);
 
   const [projectName, setProjectName] = useState(project.name);
+  const [projectNameValidationAttempted, setProjectNameValidationAttempted] =
+    useState(false);
   const [priority, setPriority] = useState<Priority>(project.priority);
-  const [dueDate, setDueDate] = useState(project.dueDate ?? "");
-  const [description, setDescription] = useState(project.description ?? "");
+  const [dueDate, setDueDate] = useState(project.dueDate ?? '');
+  const [description, setDescription] = useState(project.description ?? '');
 
   const [deletedTaskIds, setDeletedTaskIds] = useState<Set<number>>(new Set());
   const [newTasks, setNewTasks] = useState<NewTask[]>([]);
-  const [taskTitle, setTaskTitle] = useState("");
-  const [taskNotes, setTaskNotes] = useState("");
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskTitleValidationAttempted, setTaskTitleValidationAttempted] =
+    useState(false);
+  const [taskNotes, setTaskNotes] = useState('');
 
-  const existingTasks = project.tasks?.filter((t) => !deletedTaskIds.has(t.id)) ?? [];
+  const existingTasks =
+    project.tasks?.filter((t) => !deletedTaskIds.has(t.id)) ?? [];
 
   const handleMarkForDeletion = (id: number) => {
     setDeletedTaskIds((prev) => new Set(prev).add(id));
   };
 
   const handleAddTask = () => {
-    if (!taskTitle.trim()) return;
+    const title = taskTitle.trim();
+    if (!title) {
+      setTaskTitleValidationAttempted(true);
+      taskTitleRef.current?.focus();
+      return;
+    }
     setNewTasks((prev) => [
       ...prev,
-      { id: crypto.randomUUID(), title: taskTitle.trim(), notes: taskNotes.trim() },
+      { id: crypto.randomUUID(), title, notes: taskNotes.trim() },
     ]);
-    setTaskTitle("");
-    setTaskNotes("");
+    setTaskTitle('');
+    setTaskTitleValidationAttempted(false);
+    setTaskNotes('');
     taskTitleRef.current?.focus();
   };
 
@@ -70,6 +82,11 @@ export default function EditProjectForm({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!projectName.trim()) {
+      setProjectNameValidationAttempted(true);
+      projectNameRef.current?.focus();
+      return;
+    }
     onSubmit?.({
       name: projectName,
       priority,
@@ -90,6 +107,7 @@ export default function EditProjectForm({
     <form onSubmit={handleSubmit} className={styles.form} noValidate>
       <TextInput
         className={styles.nameInput}
+        ref={projectNameRef}
         label="Name"
         value={projectName}
         maxLength={100}
@@ -97,6 +115,7 @@ export default function EditProjectForm({
         onChange={setProjectName}
         autoFocus
         required
+        validationAttempted={projectNameValidationAttempted}
       />
 
       <div className={`${styles.row} ${styles.twoColumn}`}>
@@ -130,26 +149,29 @@ export default function EditProjectForm({
         </h3>
 
         <div className={styles.taskInputRow}>
-            <TextInput
-              className={styles.titleInput}
-              ref={taskTitleRef}
-              label="Task Title"
-              value={taskTitle}
-              onChange={setTaskTitle}
-            />
-            <TextArea
-              className={styles.notesInput}
-              label="Notes"
-              value={taskNotes}
-              onChange={setTaskNotes}
-              rows={3}
-            />
-            <Button
-                className={styles.addTaskButton}
-                label="Add Task"
-                variant="secondary"
-                onClick={handleAddTask}
-            />
+          <TextInput
+            className={styles.titleInput}
+            ref={taskTitleRef}
+            label="Task Title"
+            value={taskTitle}
+            required
+            validationAttempted={taskTitleValidationAttempted}
+            validateOnBlur={false}
+            onChange={setTaskTitle}
+          />
+          <TextArea
+            className={styles.notesInput}
+            label="Notes"
+            value={taskNotes}
+            onChange={setTaskNotes}
+            rows={3}
+          />
+          <Button
+            className={styles.addTaskButton}
+            label="Add Task"
+            variant="secondary"
+            onClick={handleAddTask}
+          />
         </div>
 
         {(existingTasks.length > 0 || newTasks.length > 0) && (
@@ -173,7 +195,10 @@ export default function EditProjectForm({
               </li>
             ))}
             {newTasks.map((task) => (
-              <li key={task.id} className={`${styles.taskItem} ${styles.newTask}`}>
+              <li
+                key={task.id}
+                className={`${styles.taskItem} ${styles.newTask}`}
+              >
                 <div className={styles.taskDetails}>
                   <span className={styles.taskTitle}>{task.title}</span>
                   {task.notes && (

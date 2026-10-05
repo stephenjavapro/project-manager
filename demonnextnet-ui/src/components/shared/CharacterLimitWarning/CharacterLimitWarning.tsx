@@ -1,4 +1,4 @@
-import styles from "./CharacterLimitWarning.module.scss";
+import styles from './CharacterLimitWarning.module.scss';
 
 interface CharacterLimitWarningProps {
   id: string;
@@ -20,7 +20,9 @@ export default function CharacterLimitWarning({
   return (
     <div id={id} className={styles.wrapper}>
       {isAtWarning && (
-        <span className={`${styles.countWarning} ${isAtLimit ? styles.countLimit : ""}`}>
+        <span
+          className={`${styles.countWarning} ${isAtLimit ? styles.countLimit : ''}`}
+        >
           {remaining} of {maxCharacterLimit} characters remaining
         </span>
       )}

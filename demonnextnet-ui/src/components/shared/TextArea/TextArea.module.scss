@@ -7,7 +7,7 @@
 .label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 .required {
@@ -16,28 +16,36 @@
 
 .textarea {
   padding: 0.5rem 0.75rem;
-  border: 2px solid #6b7280;
+  background-color: transparent;
+  border: 2px solid var(--color-border-input);
   border-radius: 0.375rem;
   font-size: 1rem;
-  color: var(--color-text);
-  background-color: var(--background);
+  color: var(--color-text-primary);
   width: 100%;
   resize: vertical;
   font-family: inherit;
   line-height: 1.5;
 
+  &:hover {
+    border-color: var(--color-border-input-hover);
+    background-color: var(--color-background-input-hover);
+    transition: all 200ms linear;
+  }
+
   &:focus-visible {
     outline: 3px solid var(--color-primary);
     outline-offset: 2px;
-    border-color: var(--color-primary);
+    border-color: var(--color-border-input-focus);
   }
 }
 
 .textareaError {
   border-color: var(--color-danger);
 
+  &:hover,
   &:focus-visible {
-    outline-color: var(--color-danger);
+    border-color: var(--color-danger-interaction);
+    outline-color: var(--color-danger-interaction);
   }
 }
 
