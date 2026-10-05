@@ -153,16 +153,16 @@
   border-radius: 0.25rem;
   font-size: 0.875rem;
   line-height: 1;
-  color: var(--color-danger-interaction);
+  color: #990000;
   cursor: pointer;
 
   &:hover {
-    color: var(--color-danger-interaction-focus-hover);
+    color: #550000;
     background-color: #fef2f2;
   }
 
   &:focus-visible {
-    color: var(--color-danger-interaction-focus-hover);
+    color: #550000;
     outline: 3px solid var(--color-button-focus-ring);
     outline-offset: 2px;
   }
