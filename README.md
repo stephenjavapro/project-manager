@@ -164,3 +164,6 @@ The API's main routes are:
 | User settings | `GET` and `PATCH /api/usersettings` |
 
 Swagger is enabled when the API runs in the Development environment.
+=======
+# project-manager
+A project manager demo app utlizing .NET and NextJS
