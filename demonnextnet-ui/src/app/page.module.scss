@@ -1,0 +1,34 @@
+.main {
+    width: 90vw;
+    max-width: 48rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: var(--font-geist-sans);
+
+    h1 {
+        align-self: center;
+    }
+}
+
+.addProjectButton {
+  align-self: flex-end;
+}
+
+.projectSectionList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.projectSectionHeading {
+    margin-top: 0.75rem;
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    &:empty {
+        display: none;
+    }
+}

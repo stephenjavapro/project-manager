@@ -1,0 +1,134 @@
+.button {
+  --button-focus-ring: #005fcc;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  min-height: 44px;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:focus-visible {
+    outline: 3px solid var(--button-focus-ring);
+    outline-offset: 3px;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @media (max-width: 40rem) {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.primary {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+
+  &:hover:not(:disabled) {
+    background-color: #1e293b;
+    border-color: #1e293b;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #020617;
+    border-color: #020617;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: #0f172a;
+  border-color: #0f172a;
+
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #e2e8f0;
+  }
+}
+
+.tertiary {
+  background-color: #e0f2fe;
+  color: #075985;
+  border-color: #0284c7;
+
+  &:hover:not(:disabled) {
+    background-color: #bae6fd;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #7dd3fc;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    --button-focus-ring: #93c5fd;
+  }
+
+  .primary {
+    background-color: #a5b4fc;
+    color: #0f172a;
+    border-color: #a5b4fc;
+
+    &:hover:not(:disabled) {
+      background-color: #c7d2fe;
+      border-color: #c7d2fe;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #818cf8;
+      border-color: #818cf8;
+    }
+  }
+
+  .secondary {
+    background-color: #111827;
+    color: #e2e8f0;
+    border-color: #94a3b8;
+
+    &:hover:not(:disabled) {
+      background-color: #1e293b;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #334155;
+    }
+  }
+
+  .tertiary {
+    background-color: #082f49;
+    color: #bae6fd;
+    border-color: #38bdf8;
+
+    &:hover:not(:disabled) {
+      background-color: #0c4a6e;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #075985;
+    }
+  }
+}

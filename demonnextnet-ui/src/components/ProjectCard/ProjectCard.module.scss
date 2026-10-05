@@ -1,0 +1,283 @@
+.card {
+  --card-bg:          #ffffff;
+  --card-border:      #e5e7eb;  // gray-200
+  --card-shadow:      0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --text-primary:     #111827;  // gray-900
+  --text-secondary:   #6b7280;  // gray-500  — 4.60:1 on #fff ✓ AA
+  --divider:          #e5e7eb;  // gray-200
+  --surface-hover:    #f3f4f6;  // gray-100
+  --menu-bg:          #ffffff;
+  --menu-shadow:      0 4px 12px rgba(0, 0, 0, 0.12);
+  --focus-ring:       #1d4ed8;  // blue-700  — 5.90:1 on #fff ✓ AA
+  
+  --warning-bg:       #fff7ed;  // orange-50
+  --warning-text:     #7c2d12;  // orange-900 — 8.83:1 on #fff7ed ✓ AAA
+  --warning-border:   #c2410c;  // orange-700 — 4.88:1 on #fff7ed ✓ AA non-text
+
+  --success-bg:       #f0fdf4;  // green-50
+  --success-text:     #14532d;  // green-900 — 8.70:1 on #f0fdf4 ✓ AAA
+  --success-border:   #16a34a;  // green-600 — 3.15:1 on #f0fdf4 ✓ AA non-text
+  
+  --danger-text:      #b91c1c;  // red-700    — 5.90:1 on #fff ✓ AA
+
+  @media (prefers-color-scheme: dark) {
+    --card-bg:          #1f2937;  // gray-800
+    --card-border:      #374151;  // gray-700
+    --card-shadow:      0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --text-primary:     #f9fafb;  // gray-50
+    --text-secondary:   #9ca3af;  // gray-400  — 4.63:1 on #1f2937 ✓ AA
+    --divider:          #374151;  // gray-700
+    --surface-hover:    #374151;  // gray-700
+    --menu-bg:          #111827;  // gray-900
+    --menu-shadow:      0 4px 16px rgba(0, 0, 0, 0.5);
+    --focus-ring:       #60a5fa;  // blue-400  — 4.56:1 on #1f2937 ✓ AA
+    
+    --warning-bg:       #431407;  // deep orange-950
+    --warning-text:     #fed7aa;  // orange-200 — 10.8:1 on #431407 ✓ AAA
+    --warning-border:   #9a3412;  // orange-800 —  3.2:1 on #431407 ✓ AA non-text
+
+    --success-bg:       #052e16;  // green-950
+    --success-text:     #bbf7d0;  // green-200 — 12.30:1 on #052e16 ✓ AAA
+    --success-border:   #22c55e;  // green-500 — 6.54:1 on #052e16 ✓ AA non-text
+    
+    --danger-text:      #fca5a5;  // red-300    —  5.5:1 on #111827 ✓ AA
+  }
+
+  position: relative;
+  container-type: inline-size;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row1 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nameGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.projectName {
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.dueDateTasksCompletionGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.dueDate {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.notificationBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.dueDateWarningBadge {
+  background-color: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1.5px solid var(--warning-border);
+}
+
+.allTasksCompletedBadge {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1.5px solid var(--success-border);
+}
+
+.menuContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.menuTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    color: var(--text-primary);
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 0.375rem);
+  right: 0;
+  min-width: 10.5rem;
+  padding: 0.25rem 0;
+  background-color: var(--menu-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--menu-shadow);
+  z-index: 50;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.menuOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menuItem {
+  display: block;
+  width: 100%;
+  padding: 0.5625rem 1rem;
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: var(--surface-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: -2px;
+    background-color: var(--surface-hover);
+  }
+}
+
+.menuItemDanger {
+  color: var(--danger-text);
+}
+
+.description {
+  margin: 0.5em 0;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--text-secondary);
+}
+
+.row3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.row3JustifyContentEnd {
+  justify-content: flex-end;
+}
+
+.taskStatus {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.chevron {
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chevronOpen {
+  transform: rotate(-180deg);
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.panelContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--divider);
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@container (max-width: 40rem) {
+  .row1 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .nameGroup {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-start;
+  }
+
+  .dueDateTasksCompletionGroup {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .menuContainer {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}

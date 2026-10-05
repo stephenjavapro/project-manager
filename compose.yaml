@@ -1,0 +1,10 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: DemoNextNet.Api/Dockerfile
+    ports:
+      - "5106:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: ${DEMONEXTNET_DB_CONNECTION:?Set DEMONEXTNET_DB_CONNECTION in the root .env file}

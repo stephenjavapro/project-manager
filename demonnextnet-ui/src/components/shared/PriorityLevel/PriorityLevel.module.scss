@@ -1,0 +1,39 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 2px solid #000;
+  flex-shrink: 0;
+  background-color: var(--badge-bg);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #fff;
+  }
+}
+
+.low {
+  --badge-bg: #15803d;
+
+  @media (prefers-color-scheme: dark) {
+    --badge-bg: #16a34a;
+  }
+}
+
+.medium {
+  --badge-bg: #c2410c;
+
+  @media (prefers-color-scheme: dark) {
+    --badge-bg: #ea580c;
+  }
+}
+
+.high {
+  --badge-bg: #b91c1c;
+
+  @media (prefers-color-scheme: dark) {
+    --badge-bg: #dc2626;
+  }
+}

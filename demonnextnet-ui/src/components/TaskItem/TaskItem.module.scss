@@ -1,0 +1,37 @@
+.task {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 0.75rem;
+  row-gap: 0.375rem;
+  align-items: center;
+}
+
+.title {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+}
+
+.notes {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0 0 0 .75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary, #6b7280);
+}
+
+.status {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+@container (min-width: 420px) {
+  .notes {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}

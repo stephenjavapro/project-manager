@@ -1,0 +1,23 @@
+.wrapper {
+  min-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.countWarning {
+  font-size: 0.8125rem;
+  color: var(--color-warning, #b45309);
+  font-weight: 500;
+}
+
+.countLimit {
+  font-weight: 700;
+}
+
+.message {
+  font-size: 0.75rem;
+  color: var(--color-warning, #b45309);
+  font-weight: 500;
+  min-height: 1rem;
+}
