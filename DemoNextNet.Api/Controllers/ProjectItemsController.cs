@@ -68,6 +68,7 @@ public class ProjectItemsController : ControllerBase
         return NoContent();
     }
 
+    // PATCH: api/projectitems/5
     [HttpPatch("{id}/toggle-status")]
     public async Task<ActionResult<ProjectItem>> ToggleProjectStatus(int id)
     {
