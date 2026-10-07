@@ -115,7 +115,7 @@ export function ProjectCard({
               Due: {formatDisplayDate(project.dueDate)}
             </span>
           )}
-          {allTasksCompleted && (
+          {allTasksCompleted && !project.closedAt && (
             <span
               className={`${styles.notificationBadge} ${styles.allTasksCompletedBadge}`}
               role="status"
